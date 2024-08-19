@@ -1,0 +1,1 @@
+A raw implementation of https://arxiv.org/pdf/1409.2329. Intended primarily for upskilling / getting better intuition on training issues with autoregressive language models

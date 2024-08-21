@@ -5,10 +5,11 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from modconfig import RegularizedLSTMConfig
-from regularized_lstm.infra.dataloader import CoQADataLoader
+from infra.dataloader import CoQATrainDataLoader
 
-
-dataloader = CoQADataLoader()
+tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
+ds = load_dataset("stanfordnlp/coqa")
+raw_data = CoQATrainDataLoader(ds)
 
 class RegularizedLSTM(nn.Module):
     def __init__(self, d_hidden, d_memcell, d_trans, dropout_prob=0.1):
@@ -38,7 +39,9 @@ def train_model(nmt_data: DataLoader):
         pass
 
 
-train_model(dataloader)
+train_model(raw_data)
+
+
 
 
 
